@@ -6,8 +6,7 @@
 ## Инструкции по установке и запуску
 
 1. **Установите зависимости**:
-npm install ws
-node server.js
+npm install ws, node server.js
 
 Сервер будет запущен на порту 8080.
 
