@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WebSocket Console</title>
+  </head>
+  <body>
+    <div id="console"></div>
+
+    <input type="text" id="messageInput">
+    <button onclick="sendMessage()">Отправить</button>
+
+    <script>
+      const consoleDiv = document.getElementById('console');
+      const ws = new WebSocket('ws://localhost:8080');
+
+      ws.addEventListener('open', () => {
+        consoleDiv.innerHTML += 'WebSocket connection established<br>';
+      });
+
+      ws.addEventListener('message', (event) => {
+        const message = event.data;
+        consoleDiv.innerHTML += 'Сообщение отправлено на серверную часть (ws://localhost:8080): ' + message + '<br>';
+      });
+
+      function sendMessage() {
+        const input = document.getElementById('messageInput');
+        const message = input.value;
+        ws.send(message);
+        consoleDiv.innerHTML += 'Отправленное сообщение: ' + message + '<br>';
+        input.value = '';
+      }
+    </script>
+  </body>
+</html>
